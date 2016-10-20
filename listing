@@ -1,0 +1,1 @@
+gcc ./obj/main.o ./obj/uart_obj.o ./obj/logger_obj.o -o nrm_retranslator -lbcm2835 -lncurses -lpthread -lm -g -Wall

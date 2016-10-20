@@ -1,10 +1,26 @@
-TARGET=biometria_thermo
+.PHONY: all clean
+
+
+vpath %.h ./inc
+vpath %.c ./src
+vpath %.o ./obj
+
+FINAL_TARGET=nrm_retranslator
 LIBS=-lbcm2835 -lncurses -lpthread -lm
+INCLUDES=-I./inc
+OBJECTS=main.o uart_obj.o logger_obj.o 
 
-all: $(TARGET)
+all:$(FINAL_TARGET)
 
-$(TARGET): main.c udp_send_thread.c metab_udp_thread.c init.c
-	gcc main.c -o $(TARGET) $(LIBS) -g
+$(FINAL_TARGET): $(OBJECTS)
+	gcc $^ -o $(FINAL_TARGET) $(LIBS) -g -Wall
 
-clean:
-	rm -rf *.o $(TARGET)
+main.o: main.c main.h 
+	gcc $< -c -o obj/main.o $(INCLUDES) $(LIBS) -g -Wall -O0
+uart_obj.o: uart_obj.c uart_obj.h 
+	gcc $< -c -o obj/uart_obj.o $(INCLUDES) $(LIBS) -g -Wall -O0
+logger_obj.o: logger_obj.c logger_obj.h 
+	gcc $< -c -o obj/logger_obj.o $(INCLUDES) $(LIBS) -g -Wall -O0
+
+clean:$(OBJECTS) $(FINAL_TARGET)
+	rm -rf $^ 

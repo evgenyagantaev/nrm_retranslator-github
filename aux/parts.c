@@ -1,11 +1,3 @@
-#include <bcm2835.h>
-#include <stdio.h>
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <pthread.h>
-#include <time.h>
-#include <math.h>
 
 #define NUMBER_OF_SENSORS 19  // number of sensors really connected
 #define LENGTH_OF_FILTER_ARRAY 10 // length of filter array
@@ -183,6 +175,8 @@ uint8_t read_byte(int address)
 	//bcm2835_gpio_write(CHIP_SEL, HIGH); // close SPI communication	
 	chipselhigh();
 	nanosleep(&sleep_interval, NULL);
+
+	test();
 
 	return return_data;
 }
@@ -535,14 +529,11 @@ int16_t smoothed_data(int16_t *array, int16_t value)
 // end functions ********************************************************
 
 
-//*****************************
-//*****************************
-//*****************************
-//*****************************
-//*****************************
+//**********************************************************************************
 
-int main(int argc, char *argv)
-{
+
+
+
 
 
 	struct timespec sleep_interval, long_sleep_interval, short_sleep_interval;
@@ -664,11 +655,10 @@ int main(int argc, char *argv)
 	
 		return 0;
 	}//end if(!bcm2835_init())
-}// end main
 
-//***************************************************
-//***************************************************
-//***************************************************
-//***************************************************
-//***************************************************
+
+
+
+
+
 
