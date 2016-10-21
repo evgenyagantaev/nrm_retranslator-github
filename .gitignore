@@ -1,0 +1,6 @@
+**/*.[od]
+**/*listing
+nrm_retranslator
+aux/**/*
+obj/**/*
+cscope*
