@@ -1,4 +1,4 @@
-cscope 15 /home/workspace/github_space/nrm_retranslator_github -q 0000005769 0000473521
+cscope 15 /home/workspace/github_space/nrm_retranslator_github -q 0000005776 0000473760
 	@aux/bcm2835.h
 
 318 #iâdeà
@@ -5847,6 +5847,32 @@ log_lše
 	~<m©h.h
 >
 
+	@inc/radio_package_obj.h
+
+4 
+	#PACKAGE_LENGTH
+ 100
+
+	)
+
+5 
+	#FRAME_LENGTH
+ 30
+
+6 
+	#FRAME_START_SIGN
+ 0x55
+
+	)
+
+8 
+·ckage_add_by‹
+(
+ušt8_t
+ 
+by‹
+);
+
 	@inc/uart_obj.h
 
 1 
@@ -5887,7 +5913,7 @@ log_lše
 u¬t_Ý’_pÜt
 ();
 
-12 
+13 
 u¬t_push_d©a
 (
 ušt8_t
@@ -5895,13 +5921,19 @@ ušt8_t
 d©a
 );
 
-13 
+14 
 ušt8_t
  
 u¬t_pÝ_d©a
 ();
 
-14 
+15 
+ušt8_t
+ 
+u¬t_»ad_by‹
+();
+
+17 
 £t_š‹rçû_©Œibs
  (
 fd
@@ -5911,7 +5943,7 @@ fd
 ·r™y
 );
 
-15 
+18 
 £t_blockšg
  (
 fd
@@ -6067,9 +6099,15 @@ log_fže
 	`u¬t_Ý’_pÜt
 ();
 
-21 
+23 
 	}
 }
+
+	@src/radio_package_obj.c
+
+1 
+	~"¿dio_·ckage_obj.h
+"
 
 	@src/uart_obj.c
 
@@ -81641,8 +81679,8 @@ __ASM_GENERIC_SOCKIOS_H
 2
 inc
 /usr/include
-116
-2985
+118
+3033
 aux/bcm2835.h
 aux/init.c
 aux/metab_udp_thread.c
@@ -81653,9 +81691,11 @@ aux/parts1.c
 aux/udp_send_thread.c
 inc/logger_obj.h
 inc/main.h
+inc/radio_package_obj.h
 inc/uart_obj.h
 src/logger_obj.c
 src/main.c
+src/radio_package_obj.c
 src/uart_obj.c
 /usr/include/arpa/inet.h
 /usr/include/errno.h

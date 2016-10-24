@@ -17,6 +17,13 @@ int main()
 	uart_open_port();
 	
 	// create and start uart read thread 
+	pthread_t uart_Data_Receiving_Thread;
+	
+	// start a thread which will receive data from uart
+	pthread_create(&uart_Data_Receiving_Thread, NULL, uart_data_receiving_thread, NULL);
+	
+	
+	
 	
 	return 0;
 

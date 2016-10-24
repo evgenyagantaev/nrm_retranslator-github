@@ -52,6 +52,30 @@ uint8_t uart_pop_data()
 }
 
 
+
+uint8_t uart_read_byte()
+{
+	uint8_t input_byte;
+	int n = read (uart_file_descriptor, &input_byte, 1);  // read 1 byte (blocking call)
+
+	return input_byte;
+}
+
+
+void uart_data_receiving_thread(void *parameter)
+{
+	while(1)
+	{
+		uint8_t incoming_byte;
+
+		incoming_byte = uart_read_byte();
+		uart_push_data(incoming_byte);
+	}
+}
+
+
+
+
 int set_interface_attribs (int fd, int speed, int parity)
 {
 	struct termios tty;                                                               
