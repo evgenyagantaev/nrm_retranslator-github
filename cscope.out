@@ -1,4 +1,4 @@
-cscope 15 /home/workspace/github_space/nrm_retranslator_github -q 0000005776 0000473760
+cscope 15 /home/workspace/github_space/nrm_retranslator_github -q 0000005787 0000475453
 	@aux/bcm2835.h
 
 318 #i‚de‡
@@ -5856,14 +5856,14 @@ log_löe
 	)
 
 5 
-	#FRAME_LENGTH
- 30
-
-6 
-	#FRAME_START_SIGN
- 0x55
+	#UUID_LENGTH
+ 16
 
 	)
+
+7 
+∑ckage_add_uuid
+();
 
 8 
 ∑ckage_add_byã
@@ -5933,7 +5933,13 @@ uöt8_t
 u¨t_ªad_byã
 ();
 
-17 
+16 *
+u¨t_d©a_ª˚ivög_thªad
+(*
+∑ømëî
+);
+
+18 
 £t_öãrÁ˚_©åibs
  (
 fd
@@ -5943,13 +5949,23 @@ fd
 ∑rôy
 );
 
-18 
+19 
 £t_blockög
  (
 fd
 , 
 should_block
 );
+
+	@inc/udp_pipe_obj.h
+
+4 
+udp_pùe_öô
+();
+
+5 
+udp_å™¶©e
+();
 
 	@src/logger_obj.c
 
@@ -6099,7 +6115,23 @@ log_fûe
 	`u¨t_›í_p‹t
 ();
 
+20 
+±hªad_t
+ 
+u¨t_D©a_Re˚ivög_Thªad
+;
+
 23 
+	`±hªad_¸óã
+(&
+u¨t_D©a_Re˚ivög_Thªad
+, 
+NULL
+, 
+u¨t_d©a_ª˚ivög_thªad
+, NULL);
+
+30 
 	}
 }
 
@@ -6108,6 +6140,92 @@ log_fûe
 1 
 	~"ødio_∑ckage_obj.h
 "
+
+2 
+	~"udp_pùe_obj.h
+"
+
+4 
+	gødio_∑ckage_buf„r
+[
+PACKAGE_LENGTH
+ + 
+UUID_LENGTH
+]
+
+5 
+	g∑ckage_buf„r_ödex
+ = 0;
+
+9 
+	$∑ckage_add_uuid
+()
+
+11 
+i
+;
+
+12 
+i
+=0; i<(
+UUID_LENGTH
+-1); i++)
+
+13 
+ødio_∑ckage_buf„r
+[
+i
+] = 0;
+
+14 
+ødio_∑ckage_buf„r
+[
+UUID_LENGTH
+ - 1] = 0x01;
+
+15 
+	}
+}
+
+17 
+	$∑ckage_add_byã
+(
+uöt8_t
+ 
+byã
+)
+
+19 
+ødio_∑ckage_buf„r
+[
+∑ckage_buf„r_ödex
+ + 
+UUID_LENGTH
+];
+
+21 if(
+∑ckage_buf„r_ödex
+ >
+PACKAGE_LENGTH
+)
+
+23 
+∑ckage_buf„r_ödex
+ = 0;
+
+25 
+	`udp_å™¶©e
+(&
+ødio_∑ckage_buf„r
+, 
+PACKAGE_LENGTH
+ + 
+UUID_LENGTH
+);
+
+27 
+	}
+}
 
 	@src/uart_obj.c
 
@@ -6259,7 +6377,67 @@ u¨t_buf„r_ödex
 	}
 }
 
-55 
+56 
+uöt8_t
+ 
+	$u¨t_ªad_byã
+()
+
+58 
+uöt8_t
+ 
+öput_byã
+;
+
+59 
+	`ªad
+ (
+u¨t_fûe_des¸ùt‹
+, &
+öput_byã
+, 1);
+
+61  
+öput_byã
+;
+
+62 
+	}
+}
+
+65 *
+	$u¨t_d©a_ª˚ivög_thªad
+(*
+∑ømëî
+)
+
+68 
+	`loggî_add_löe
+("workingÅhread started;");
+
+72 
+uöt8_t
+ 
+öcomög_byã
+;
+
+74 
+öcomög_byã
+ = 
+	`u¨t_ªad_byã
+();
+
+75 
+	`u¨t_push_d©a
+(
+öcomög_byã
+);
+
+77 
+	}
+}
+
+82 
 	$£t_öãrÁ˚_©åibs
  (
 fd
@@ -6269,19 +6447,19 @@ fd
 ∑rôy
 )
 
-57 
+84 
 ãrmios
  
 ây
 ;
 
-58 
+85 
 	`mem£t
  (&
 ây
 , 0, Åty);
 
-59 i‡(
+86 i‡(
 	`tcgë©å
  (
 fd
@@ -6289,7 +6467,7 @@ fd
 ây
 ) != 0)
 
-65 
+92 
 	`cf£to•ìd
  (&
 ây
@@ -6297,7 +6475,7 @@ fd
 •ìd
 );
 
-66 
+93 
 	`cf£ti•ìd
  (&
 ây
@@ -6305,7 +6483,7 @@ fd
 •ìd
 );
 
-68 
+95 
 ây
 .
 c_cÊag
@@ -6315,7 +6493,7 @@ CSIZE
 CS8
 ;
 
-71 
+98 
 ây
 .
 c_iÊag
@@ -6323,19 +6501,19 @@ c_iÊag
 IGNBRK
 ;
 
-72 
+99 
 ây
 .
 c_lÊag
  = 0;
 
-74 
+101 
 ây
 .
 c_oÊag
  = 0;
 
-75 
+102 
 ây
 .
 c_cc
@@ -6343,7 +6521,7 @@ c_cc
 VMIN
 ] = 0;
 
-76 
+103 
 ây
 .
 c_cc
@@ -6351,7 +6529,7 @@ c_cc
 VTIME
 ] = 5;
 
-78 
+105 
 ây
 .
 c_iÊag
@@ -6363,7 +6541,7 @@ IXOFF
 IXANY
 );
 
-80 
+107 
 ây
 .
 c_cÊag
@@ -6373,7 +6551,7 @@ CLOCAL
 CREAD
 );
 
-82 
+109 
 ây
 .
 c_cÊag
@@ -6383,7 +6561,7 @@ PARENB
 PARODD
 );
 
-83 
+110 
 ây
 .
 c_cÊag
@@ -6391,7 +6569,7 @@ c_cÊag
 ∑rôy
 ;
 
-84 
+111 
 ây
 .
 c_cÊag
@@ -6399,7 +6577,7 @@ c_cÊag
 CSTOPB
 ;
 
-85 
+112 
 ây
 .
 c_cÊag
@@ -6407,7 +6585,7 @@ c_cÊag
 CRTSCTS
 ;
 
-87 i‡(
+114 i‡(
 	`tc£èâr
  (
 fd
@@ -6417,11 +6595,11 @@ TCSANOW
 ây
 ) != 0)
 
-93 
+120 
 	}
 }
 
-97 
+124 
 	$£t_blockög
  (
 fd
@@ -6429,19 +6607,19 @@ fd
 should_block
 )
 
-99 
+126 
 ãrmios
  
 ây
 ;
 
-100 
+127 
 	`mem£t
  (&
 ây
 , 0, Åty);
 
-101 i‡(
+128 i‡(
 	`tcgë©å
  (
 fd
@@ -6449,7 +6627,7 @@ fd
 ây
 ) != 0)
 
-107 
+134 
 ây
 .
 c_cc
@@ -6459,7 +6637,7 @@ VMIN
 should_block
  ? 1 : 0;
 
-108 
+135 
 ây
 .
 c_cc
@@ -6467,7 +6645,7 @@ c_cc
 VTIME
 ] = 5;
 
-110 i‡(
+137 i‡(
 	`tc£èâr
  (
 fd
@@ -6477,7 +6655,115 @@ TCSANOW
 ây
 ) != 0)
 
-114 
+141 
+	}
+}
+
+	@src/udp_pipe_obj.c
+
+1 
+	~"udp_pùe_obj.h
+"
+
+4 
+	$udp_pùe_öô
+()
+
+6 
+sock
+;
+
+7 
+sockaddr_ö
+ 
+addr
+;
+
+9 
+i
+ = 1;
+
+10 
+sock
+ = 
+	`sockë
+(
+AF_INET
+, 
+SOCK_DGRAM
+, 0);
+
+11 if(
+sock
+ < 0)
+
+13 
+	`¥ötf
+("\r\nsocket failure ******************\r\n");
+
+14 *((*)
+∑øm
+) = 1;
+
+15  (*)
+∑øm
+;
+
+18 
+addr
+.
+sö_Ámûy
+ = 
+AF_INET
+;
+
+19 
+addr
+.
+sö_p‹t
+ = 
+	`ht⁄s
+(51112);
+
+23 
+addr
+.
+sö_addr
+.
+s_addr
+ = 
+	`öë_addr
+("192.168.0.89");
+
+29 
+	}
+}
+
+34 
+	$udp_å™¶©e
+(
+uöt8_t
+ *
+buf„r
+, 
+buf„r_Àngth
+)
+
+36 
+	`£ndto
+(
+sock
+, (*)
+buf„r
+, 
+buf„r_Àngth
+, 0, (
+sockaddr
+ *)&
+addr
+, (addr));
+
+38 
 	}
 }
 
@@ -81679,8 +81965,8 @@ __ASM_GENERIC_SOCKIOS_H
 2
 inc
 /usr/include
-118
-3033
+120
+3071
 aux/bcm2835.h
 aux/init.c
 aux/metab_udp_thread.c
@@ -81693,10 +81979,12 @@ inc/logger_obj.h
 inc/main.h
 inc/radio_package_obj.h
 inc/uart_obj.h
+inc/udp_pipe_obj.h
 src/logger_obj.c
 src/main.c
 src/radio_package_obj.c
 src/uart_obj.c
+src/udp_pipe_obj.c
 /usr/include/arpa/inet.h
 /usr/include/errno.h
 /usr/include/fcntl.h

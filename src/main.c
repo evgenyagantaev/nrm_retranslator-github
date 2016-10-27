@@ -22,7 +22,10 @@ int main()
 	// start a thread which will receive data from uart
 	pthread_create(&uart_Data_Receiving_Thread, NULL, uart_data_receiving_thread, NULL);
 	
-	
+	while(1)
+	{
+		sleep(1);
+	}
 	
 	
 	return 0;
