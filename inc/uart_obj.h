@@ -5,8 +5,9 @@
 #include <string.h>
 #include <termios.h>
 #include <unistd.h>
+#include <stdint.h>
 
-#define DATA_BUFFER_LENGTH 16
+#define DATA_BUFFER_LENGTH 3000
 
 void uart_open_port();
 

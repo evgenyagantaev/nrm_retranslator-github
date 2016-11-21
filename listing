@@ -1,1 +1,51 @@
-gcc ./obj/main.o ./obj/uart_obj.o ./obj/logger_obj.o -o nrm_retranslator -lbcm2835 -lncurses -lpthread -lm -g -Wall
+gcc ./src/udp_pipe_obj.c -c -o obj/udp_pipe_obj.o -I./inc -lbcm2835 -lncurses -lpthread -lm -g -Wall -O0
+./src/udp_pipe_obj.c: In function ‘udp_pipe_init’:
+./src/udp_pipe_obj.c:23:21: error: storage size of ‘addr’ isn’t known
+  struct sockaddr_in addr;
+                     ^
+./src/udp_pipe_obj.c:25:2: error: ‘i’ undeclared (first use in this function)
+  i = 1;
+  ^
+./src/udp_pipe_obj.c:25:2: note: each undeclared identifier is reported only once for each function it appears in
+./src/udp_pipe_obj.c:26:2: warning: implicit declaration of function ‘socket’ [-Wimplicit-function-declaration]
+  sock = socket(AF_INET, SOCK_DGRAM, 0);
+  ^
+./src/udp_pipe_obj.c:26:16: error: ‘AF_INET’ undeclared (first use in this function)
+  sock = socket(AF_INET, SOCK_DGRAM, 0);
+                ^
+./src/udp_pipe_obj.c:26:25: error: ‘SOCK_DGRAM’ undeclared (first use in this function)
+  sock = socket(AF_INET, SOCK_DGRAM, 0);
+                         ^
+./src/udp_pipe_obj.c:29:3: warning: implicit declaration of function ‘printf’ [-Wimplicit-function-declaration]
+   printf("\r\nsocket failure ******************\r\n");
+   ^
+./src/udp_pipe_obj.c:29:3: warning: incompatible implicit declaration of built-in function ‘printf’ [enabled by default]
+./src/udp_pipe_obj.c:30:12: error: ‘param’ undeclared (first use in this function)
+   *((int *)param) = 1; 
+            ^
+./src/udp_pipe_obj.c:31:3: warning: ‘return’ with a value, in function returning void [enabled by default]
+   return (void *)param;
+   ^
+./src/udp_pipe_obj.c:35:2: warning: implicit declaration of function ‘htons’ [-Wimplicit-function-declaration]
+  addr.sin_port = htons(51112);
+  ^
+./src/udp_pipe_obj.c:39:2: warning: implicit declaration of function ‘inet_addr’ [-Wimplicit-function-declaration]
+  addr.sin_addr.s_addr = inet_addr("192.168.0.89");
+  ^
+./src/udp_pipe_obj.c:44:24: error: ‘thermo_t’ undeclared (first use in this function)
+  udp_frame.ps = sizeof(thermo_t);
+                        ^
+./src/udp_pipe_obj.c:23:21: warning: unused variable ‘addr’ [-Wunused-variable]
+  struct sockaddr_in addr;
+                     ^
+./src/udp_pipe_obj.c: In function ‘udp_translate’:
+./src/udp_pipe_obj.c:56:2: warning: implicit declaration of function ‘sendto’ [-Wimplicit-function-declaration]
+  sendto(sock, (char *)pointer, sizeof(udp_frame), 0, (struct sockaddr *)&addr, sizeof(addr));
+  ^
+./src/udp_pipe_obj.c:56:9: error: ‘sock’ undeclared (first use in this function)
+  sendto(sock, (char *)pointer, sizeof(udp_frame), 0, (struct sockaddr *)&addr, sizeof(addr));
+         ^
+./src/udp_pipe_obj.c:56:74: error: ‘addr’ undeclared (first use in this function)
+  sendto(sock, (char *)pointer, sizeof(udp_frame), 0, (struct sockaddr *)&addr, sizeof(addr));
+                                                                          ^
+make: *** [udp_pipe_obj.o] Error 1

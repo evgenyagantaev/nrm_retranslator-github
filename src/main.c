@@ -2,6 +2,13 @@
 
 #include "uart_obj.h"
 #include "logger_obj.h"
+#include "udp_pipe_obj.h"
+
+#include "/root/uuid.h"   // uuid of this machine
+//uint8_t uuid[16];
+//uint8_t uuid1[16];
+
+
 
 
 //*****************************   MAIN
@@ -15,6 +22,9 @@ int main()
 	logger_add_line("<< application started >>");
 
 	uart_open_port();
+	udp_pipe_init();
+	package_add_uuid(uuid, uuid1);
+
 	
 	// create and start uart read thread 
 	pthread_t uart_Data_Receiving_Thread;

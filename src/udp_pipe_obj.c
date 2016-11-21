@@ -1,5 +1,21 @@
 #include "udp_pipe_obj.h"
 
+// udp frame struct
+static struct 
+{
+	uint16_t hd_id;
+	uint16_t ps;
+	nrm_t nrm_data_package;
+	uint16_t crc16;
+} udp_frame;
+
+static void *pointer = (void *)(&udp_frame);
+
+nrm_t *get_data_package_pointer()
+{
+	return (nrm_t *)(&(udp_frame.nrm_data_package));
+}
+
 
 void udp_pipe_init()
 {
@@ -24,6 +40,9 @@ void udp_pipe_init()
 	//addr.sin_addr.s_addr = inet_addr("192.168.0.191");
 	//addr.sin_addr.s_addr = inet_addr("192.168.43.139");
 
+	udp_frame.hd_id = 0x5448;
+	udp_frame.ps = sizeof(thermo_t);
+	udp_frame.crc16 = 0x5555;
 
 	
 }
@@ -31,8 +50,9 @@ void udp_pipe_init()
 
 
 
-void udp_translate(uint8_t *buffer, int buffer_length)
+void udp_translate()
 {
-	sendto(sock, (char *)buffer, buffer_length, 0, (struct sockaddr *)&addr, sizeof(addr));
+	
+	sendto(sock, (char *)pointer, sizeof(udp_frame), 0, (struct sockaddr *)&addr, sizeof(addr));
 	
 }

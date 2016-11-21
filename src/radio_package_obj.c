@@ -1,29 +1,33 @@
-#include "radio_package_obj.h"
 #include "udp_pipe_obj.h"
-
-static radio_package_buffer[PACKAGE_LENGTH + UUID_LENGTH]
-static package_buffer_index = 0;
+#include "logger_obj.h"
 
 
 
-void package_add_uuid()
+static nrm_t *nrm_data_package;
+
+void package_add_uuid(uint8_t *uuid, uint8_t *uuid1)
 {
 	int i;
-	for(i=0; i<(UUID_LENGTH-1); i++)
-		radio_package_buffer[i] = 0;
-	radio_package_buffer[UUID_LENGTH - 1] = 0x01;
+
+	// initialize pointer
+	nrm_data_package = get_data_package_pointer();
+
+	for(i=0;i<UUID_LENGTH;i++)
+		nrm_data_package->concentrator_uuid[i] = uuid[i];
+	for(i=0;i<UUID_LENGTH;i++)
+		nrm_data_package->nrm_uuid[i] = uuid1[i];
+
 }
 
-void package_add_byte(uint8_t byte)
+void package_add_byte(uint8_t byte, int index)
 {
-	radio_package_buffer[package_buffer_index + UUID_LENGTH];
-
-	if(package_buffer_index >= PACKAGE_LENGTH)
+	if(index < NRM_PACKAGE_LENGTH)
 	{
-		package_buffer_index = 0;
-		// send package via udp pipe
-		udp_translate(&radio_package_buffer, PACKAGE_LENGTH + UUID_LENGTH);
+		nrm_data_package->data[index] = byte;
 	}
+	else
+		logger_add_line("Index out of range (package_add_byte in radio_package_obj.c)");
+		
 }
 
 

@@ -1,4 +1,6 @@
 #include "uart_obj.h"
+#include "udp_pipe_obj.h"
+#include "radio_package_obj.h"
 
 #include "logger_obj.h"
 
@@ -6,7 +8,6 @@ static uint8_t uart_data_buffer[DATA_BUFFER_LENGTH];
 static int uart_buffer_index = 0;
 
 static int uart_file_descriptor; // serial port file descriptor
-
 
 void uart_open_port()
 {
@@ -30,9 +31,9 @@ void uart_open_port()
 void uart_push_data(uint8_t data)
 {
 	// save new data in buffer
-	if(uart_buffer_index < DATA_BUFFER_LENGTH)
+	if(uart_buffer_index < NRM_PACKAGE_LENGTH)
 	{
-		uart_data_buffer[uart_buffer_index] = data;
+		package_add_byte(data, uart_buffer_index);
 		uart_buffer_index++;
 	}
 }
@@ -62,6 +63,7 @@ uint8_t uart_read_byte()
 }
 
 
+//******************* THREAD **************************
 void *uart_data_receiving_thread(void *parameter)
 {
 
@@ -73,9 +75,16 @@ void *uart_data_receiving_thread(void *parameter)
 
 		incoming_byte = uart_read_byte();
 		uart_push_data(incoming_byte);
+
+		if(uart_buffer_index == DATA_BUFFER_LENGTH) // buffer full
+		{
+			uart_buffer_index = 0;
+			// send data via udp pipe
+			udp_translate();
+		}
 	}
 }
-
+//*****************************************************
 
 
 
